@@ -8,6 +8,9 @@ from types import SimpleNamespace
 
 import pytest
 
+# Bootstrap before the per-test real-home I/O guard is installed, as the CLI
+# entrypoint imports its managed dependency environment at module import.
+import cli as cli_mod
 from hermes_cli.model_switch import ModelSwitchResult
 from tests.hermes_cli.test_cli_gateway_model_route import RecordingConnection, _agent, _model_routes
 
@@ -27,7 +30,6 @@ class GuardedConnection(RecordingConnection):
 
 
 def _cli(monkeypatch, conn):
-    import cli as cli_mod
     from hermes_cli.gateway_session_store import GatewaySessionStore
     from tests.hermes_cli.test_cli_model_once import _StubCLI
     stub = _StubCLI()

@@ -61,7 +61,7 @@ _DOH_PROVIDERS: list[dict] = [
 ]
 # Last-resort IPv4 Bot API endpoints (149.154.160.0/20). Used when DoH is blocked AND as
 # first-try connect targets so a blackholed IPv6 AAAA for the hostname can't pin initialize().
-SEED_FALLBACK_IPS: list[str] = []  # Disabled sticky fallback IPs to prevent ConnectTimeout stalls (ISS-31)
+SEED_FALLBACK_IPS: list[str] = ["149.154.166.110", "149.154.167.220"]
 _UNSET = object()
 # One request's whole fallback walk shares this CONNECT budget: half the adapter's 30s telegram-send
 # deadline, so the walk ends with its own (safely retryable) ConnectTimeout before that deadline fires
